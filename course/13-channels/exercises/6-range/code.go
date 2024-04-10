@@ -6,7 +6,14 @@ import (
 )
 
 func concurrrentFib(n int) {
-	// ?
+	chInts := make(chan int)
+	go func()  {
+		fibonacci(n, chInts)
+	}()
+
+	for v := range chInts {
+		fmt.Println(v)
+	}
 }
 
 // TEST SUITE - Don't touch below this line
